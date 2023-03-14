@@ -1,0 +1,7 @@
+{
+  "name": "holiday-butler",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
