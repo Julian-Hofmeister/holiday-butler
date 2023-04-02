@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.information-detail-card {
+    align-items: center;
+  margin: 10px;
+  padding: 20px 20px;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 2px 12px;
+    background-color: white;
+}
+
+p {
+    margin-top: 5px;
+}
+
+#row {
+    width: 90%;
+    height: 100%;
+    left: 5%;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+ion-icon {
+    font-size: 1.4rem;
+    color: var(--ion-color-primary);
+}
+
+span {
+    font-size: 1.4rem;
+    color: var(--ion-color-primary);
+}
+
+#link {
+    margin-left: 0.8rem;
+    color: var(--ion-color-accent) !important;
+}

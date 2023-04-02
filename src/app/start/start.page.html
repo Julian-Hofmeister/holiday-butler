@@ -1,0 +1,122 @@
+<ion-content>
+  <ion-grid *ngIf="!isLoading">
+    <ion-row>
+      <ion-col size-md="12" size-lg="8" offset-lg="2">
+        <div class="header-container">
+          <img id="bgImage" class="bg-img" [src]="backgroundImage"  alt=""/>
+          <div class="top-right">
+            <div *ngIf="house.multilingual" class="translation-box" (click)="switchLanguage()">
+              <p>{{"start.translationBtn" | translate}}</p>
+            </div>
+          </div>
+<!--          <ion-modal trigger="open-logout-modal" id="logout-modal">-->
+<!--            <ng-template>-->
+<!--              <div class="container">-->
+<!--                <ion-row>-->
+<!--                  <ion-col>-->
+<!--                    <h3>Abmelden</h3>-->
+<!--                    <p>Sind Sie sicher, dass Sie sich abmelden möchten?</p>-->
+<!--                    <ion-button (click)="onLogout()"> Abmelden </ion-button>-->
+<!--                    <ion-button class="outlined" (click)="onDismissLogoutModal()">-->
+<!--                      Zurück-->
+<!--                    </ion-button>-->
+<!--                  </ion-col>-->
+<!--                </ion-row>-->
+<!--              </div>-->
+<!--            </ng-template>-->
+<!--          </ion-modal>-->
+
+          <div class="centered-vertical">
+            <ion-row class="centered-horizontal">
+              <ion-col>
+                <h1>{{house.pageTitle}}</h1>
+
+                <hr />
+
+                <h5>{{house.pageSubtitle}}</h5>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-md="12" size-lg="8" offset-lg="2">
+        <div class="content-card">
+          <p>{{house.welcomeMessage}}</p>
+          <br />
+<!--          <div class="date-display" *ngIf="house.periodOfStayWidget">-->
+<!--            <ion-row>-->
+<!--              <ion-col size="7">-->
+<!--                <p>Ihre Buchung:</p>-->
+<!--              </ion-col>-->
+<!--              <ion-col>-->
+<!--                <div class="filled-display">-->
+<!--                  <p>-->
+<!--                    {{ user.arriveDate | date: "dd.MM" }} - {{ user.leaveDate | date: "dd.MM" }}-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </ion-col>-->
+<!--            </ion-row>-->
+<!--          </div>-->
+        </div>
+      </ion-col>
+    </ion-row>
+
+<!--    <ion-row *ngIf="user.role == 'admin'" class="admin-card">-->
+<!--      <ion-col size-md="12" size-lg="8" offset-lg="2">-->
+<!--        <div class="content-card">-->
+<!--          <p>-->
+<!--            Sie sind als Administrator eingeloggt. Hier können Sie ganz einfach einen neuen Gast hinzufügen.-->
+<!--          </p>-->
+
+<!--          <br />-->
+
+<!--          <ion-button (click)="onOpenAdminPage()" class="admin-button">-->
+<!--            Gast hinzufügen-->
+<!--          </ion-button>-->
+<!--        </div>-->
+<!--        <div *ngIf="!loadedUsers$" class="guest-list">-->
+<!--          <p class="no-guests">momentan keine aktiven Gäste</p>-->
+<!--        </div>-->
+<!--        <div *ngIf="loadedUsers$" class="guest-list">-->
+<!--          <p class="guest-title">Aktive/Zukünftige Gäste</p>-->
+<!--          <ion-list *ngFor="let user of loadedUsers$ | async ">-->
+<!--            <app-user-item [user]="user" (click)="onOpenAdminPage(user)"></app-user-item>-->
+<!--          </ion-list>-->
+<!--        </div>-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+
+    <ion-row>
+      <ion-col size-md="12" size-lg="8" offset-lg="2">
+        <app-apartment-info [items]="primaryItems"> </app-apartment-info>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="content-row">
+      <ion-col class="content-col" size-md="12" size-lg="8" offset-lg="2">
+        <!-- FUNCTIONS BIG -->
+<!--        <p class="title">Funktionen</p>-->
+<!--        <app-action-card *ngIf="(user.arriveDate > currentDate || user.role == 'admin') && house.beforeArrival && house.beforeArrival.isVisible" [card]="house.beforeArrival">-->
+<!--        </app-action-card>-->
+
+<!--        <app-action-card *ngIf="house.breakfastService && house.breakfastService.isVisible" [card]="house.breakfastService">-->
+<!--        </app-action-card>-->
+
+<!--        <app-action-card *ngIf="house.saunaService && house.saunaService.isVisible" [card]="house.saunaService">-->
+<!--        </app-action-card>-->
+
+<!--        <app-action-card *ngIf="house.feedbackService && house.feedbackService.isVisible" [card]="house.feedbackService">-->
+<!--        </app-action-card>-->
+      </ion-col>
+    </ion-row>
+    <ion-row class="space"></ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="isLoading">
+    <div class="spinner-container">
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+  </ion-grid>
+</ion-content>

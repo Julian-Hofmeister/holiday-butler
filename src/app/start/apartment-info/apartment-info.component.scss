@@ -1,0 +1,37 @@
+ion-accordion {
+    box-shadow: rgba(56, 60, 65, 0.2) 0px 8px 24px;
+}
+
+ion-accordion.accordion-expanding ion-item[slot="header"],
+ion-accordion.accordion-expanded ion-item[slot="header"] {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-light);
+    font-weight: 600;
+}
+
+ion-accordion.accordion-expanding,
+ion-accordion.accordion-expanded {
+    box-shadow: rgba(123, 129, 136, 0.2) 0px 8px 24px;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+p {
+    margin: 5px 0;
+}
+
+.title {
+    margin-left: 1rem;
+    margin-bottom: -.5rem
+}
+
+ion-accordion ion-item[slot="header"] {
+    font-weight: 500;
+}
+
+ion-list {
+    margin: 0;
+    padding: 0;
+}

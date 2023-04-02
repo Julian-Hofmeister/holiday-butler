@@ -1,0 +1,35 @@
+<ion-header [translucent]="true"  mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-title>Informationen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" mode="ios">
+    <ion-toolbar class="condense-header">
+      <ion-title >Informationen</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="main-col">
+        <ion-searchbar (ionInput)="filterList($event)" placeholder="Suchen"></ion-searchbar>
+
+        <div *ngIf="!searchTerm">
+          <ion-list *ngFor="let item of preFilteredItems">
+            <app-item-card [item]="item"></app-item-card>
+          </ion-list>
+        </div>
+
+        <div *ngIf="searchTerm">
+          <ion-list *ngFor="let item of filteredTitleItems">
+            <app-item-card [item]="item"></app-item-card>
+          </ion-list>
+          <ion-list *ngFor="let item of filteredDescriptionItems">
+            <app-item-card [item]="item"></app-item-card>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "vacation-home-app-ohrwumslar": {
+      "hosting": {
+        "app": [
+          "holiday-butler"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "vacation-home-app-ohrwumslar"
+  }
+}

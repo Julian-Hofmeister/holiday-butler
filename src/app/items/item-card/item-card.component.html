@@ -1,0 +1,40 @@
+<div class="information-detail-card">
+<!--    <ion-row>-->
+<!--        <p id="category" *ngIf="item.category">{{ item.category }}</p>-->
+<!--    </ion-row>-->
+    <ion-row *ngIf="item.title">
+        <h4>{{ item.title }}</h4>
+    </ion-row>
+    <ion-row *ngIf="item.description">
+        <p>
+            {{ item.description }}
+        </p>
+    </ion-row>
+    <ion-row>
+        <ion-col size="5" *ngIf="item.websiteLink">
+            <ion-row class="row">
+                <!-- <ion-icon name="globe-outline"></ion-icon> -->
+                <span class="material-icons-outlined"> public </span>
+                <a class="link" [href]="item.websiteLink">Webseite</a>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col *ngIf="item.phoneLink">
+            <ion-row class="row">
+                <!-- <ion-icon name="call-outline"></ion-icon> -->
+                <span class="material-icons-outlined"> phone </span>
+                <a class="link" [href]="'tel:' + item.phoneLink">Anrufen</a>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col *ngIf="item.mapsLink">
+            <ion-row class="row">
+                <!-- <ion-icon name="map-outline"></ion-icon> -->
+                <span class="material-icons-outlined"> location_on </span>
+                <a class="link" [href]="item.mapsLink">Auf Karte anzeigen</a>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+</div>
