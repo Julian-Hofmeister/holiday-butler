@@ -1,0 +1,159 @@
+<ion-list [@simpleFadeAnimation]="'in'">
+  <form [formGroup]="itemPageForm" (ngSubmit)="submit()">
+    <ion-row class="align-vertical">
+      <ion-row class="align-vertical">
+        <h2>{{tab === 'tab1' ? "Wohnung" : "umgebung"}}</h2>
+<!--        <span class="material-symbols-outlined">edit</span>-->
+      </ion-row>
+      <ion-row class="align-vertical">
+        <p *ngIf="itemPageForm.dirty || selectedFile" class="cancel" (click)="discardChanges()">Verwerfen</p>
+        <ion-button type="submit" [disabled]="(!itemPageForm.dirty && !selectedFile) || !itemPageForm.valid">Speichern<span class="material-symbols-outlined">save</span></ion-button>
+<!--        <ion-button class="add" *ngIf="itemPageForm.dirty || dirtyInfoRows || selectedFile"><span class="material-symbols-outlined">add</span></ion-button>-->
+      </ion-row>
+    </ion-row>
+
+    <ion-list>
+      <!--### TITEL ###-->
+      <ion-item lines="none">
+        <ion-label position="stacked">Titel:</ion-label>
+        <ion-input formControlName="title" class="custom"></ion-input>
+      </ion-item>
+
+      <!--### UNTERTITEL ###-->
+      <ion-item lines="none">
+        <ion-label position="stacked">Untertitel:</ion-label>
+        <ion-input formControlName="subtitle" class="custom"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <!--### BESCHREIBUNG ###-->
+    <ion-item lines="none">
+      <ion-label position="stacked">Beschreibung:</ion-label>
+      <ion-textarea rows="4" formControlName="description" class="custom"></ion-textarea>
+    </ion-item>
+
+
+<!--    &lt;!&ndash;### INFO REIHEN ###&ndash;&gt;-->
+<!--    <ion-item lines="none"  class="info-label">-->
+<!--      <ion-label position="stacked"  class="info-label">Info Reihen:</ion-label>-->
+<!--    </ion-item>-->
+<!--    <ion-list *ngFor="let infoRow of item!.infoRows" class="no-styles">-->
+<!--      <ion-row>-->
+<!--        <ion-col class="no-styles">-->
+<!--          <ion-item lines="none">-->
+<!--            <ion-label position="stacked">Titel:</ion-label>-->
+<!--            <ion-input [(ngModel)]="infoRow.name" [ngModelOptions]="{standalone: true}" class="custom" (ionInput)="markInfoRowsDirty()"></ion-input>-->
+<!--          </ion-item>-->
+<!--        </ion-col>-->
+<!--        <ion-col class="no-styles">-->
+<!--          <ion-item lines="none">-->
+<!--            <ion-label position="stacked">Inhalt:</ion-label>-->
+<!--            <ion-input  [(ngModel)]="infoRow.content" [ngModelOptions]="{standalone: true}" class="custom" (ionInput)="markInfoRowsDirty()"></ion-input>-->
+<!--          </ion-item>-->
+<!--        </ion-col>-->
+<!--      </ion-row>-->
+<!--    </ion-list>-->
+<!--    <ion-row class="add-row">-->
+<!--      <ion-button class="add-btn" (click)="addInfoRow()">Neue Reihe</ion-button>-->
+<!--    </ion-row>-->
+
+    <!--### BILD ###-->
+    <ion-item lines="none">
+      <ion-label position="stacked">Bild:</ion-label>
+      <input #imageInput
+             id="imageInput"
+             type="file"
+             accept="image/*"
+             (change)="processFile(imageInput)" class="custom">
+    </ion-item>
+    <ion-accordion-group *ngIf="selectedFile || itemPageForm.controls['imgRef'].value" >
+      <ion-accordion >
+        <ion-item slot="header">
+          <ion-label>Bild Platzierung</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-radio-group formControlName="kind">
+         <ion-row>
+             <ion-col size="4">
+               <ion-radio value="bigImg" mode="md"></ion-radio><br/>
+               <img src="/assets/imgs/Group%2066.png" alt="" (click)="selectKind('bigImg')">
+             </ion-col>
+             <ion-col size="4">
+               <ion-radio value="mediumImg" mode="md"></ion-radio><br/>
+               <img src="/assets/imgs/Group%2065.png" alt=""  (click)="selectKind('mediumImg')">
+             </ion-col>
+             <ion-col size="4">
+               <ion-radio value="smallImg" mode="md"></ion-radio><br/>
+               <img src="/assets/imgs/Group%2067.png" alt=""  (click)="selectKind('smallImg')">
+             </ion-col>
+         </ion-row>
+          </ion-radio-group>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+    <ion-row class="img-row">
+      <img *ngIf="selectedFile" [src]="selectedFile.src" alt="">
+      <img *ngIf="itemPageForm.controls['img'].value && !selectedFile" [src]="itemPageForm.controls['img'].value" alt="">
+      <span *ngIf="itemPageForm.controls['img'].value || selectedFile" class="material-symbols-outlined" (click)="clearImg()">delete</span>
+    </ion-row>
+
+    <!--### TELEFON NUMMER ###-->
+      <ion-item lines="none">
+        <ion-label position="stacked">Telefonnummer:</ion-label>
+        <ion-row  class="input-row">
+          <span class="material-symbols-outlined">call</span>
+        <ion-input formControlName="phoneLink" class="custom"></ion-input>
+        </ion-row>
+      </ion-item>
+
+    <!--### GOOGLE MAPS LINK ###-->
+    <ion-item lines="none">
+      <ion-label position="stacked">Link zu Google Maps:</ion-label>
+      <ion-row  class="input-row">
+        <span class="material-symbols-outlined">location_on</span>
+        <ion-input formControlName="mapsLink" class="custom"></ion-input>
+      </ion-row>
+    </ion-item>
+
+    <!--### WEBSEITE ###-->
+    <ion-item lines="none">
+      <ion-label position="stacked">Link zu Webseite:</ion-label>
+      <ion-row  class="input-row">
+        <span class="material-symbols-outlined">public</span>
+        <ion-input formControlName="websiteLink" class="custom"></ion-input>
+      </ion-row>
+    </ion-item>
+
+    <!--### LINK HERVORHEBEN FÜR ###-->
+    <ion-item lines="none" *ngIf="itemPageForm.controls['phoneLink'].value || itemPageForm.controls['mapsLink'].value || itemPageForm.controls['websiteLink'].value" >
+      <ion-label position="stacked">Link Hervorheben:</ion-label>
+      <ion-select class="custom" placeholder="Telefonnummer" formControlName="standOutBtn" >
+        <ion-select-option  *ngIf="itemPageForm.controls['phoneLink'].value" value="phone">Telefonnummer</ion-select-option>
+        <ion-select-option  *ngIf="itemPageForm.controls['mapsLink'].value" value="maps">Maps</ion-select-option>
+        <ion-select-option  *ngIf="itemPageForm.controls['websiteLink'].value" value="website">Webseite</ion-select-option>
+        <ion-select-option   value="undefined">Nicht Hervorheben</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+<!--    &lt;!&ndash;### HERVORHEBENDER TEXT ###&ndash;&gt;-->
+<!--    <ion-item lines="none" *ngIf="itemPageForm.controls['phoneLink'].value || itemPageForm.controls['mapsLink'].value || itemPageForm.controls['websiteLink'].value">-->
+<!--      <ion-label position="stacked">Hervorhebender Text:</ion-label>-->
+<!--      <ion-input formControlName="customBtnText" class="custom"></ion-input>-->
+<!--    </ion-item>-->
+
+    <!--### SICHTBAR FÜR ###-->
+    <div *ngIf="house">
+      <ion-item lines="none" *ngIf="house.apartments.length > 1">
+        <ion-label position="stacked">Sichtbar für bestimmte Apartments:</ion-label>
+        <ion-select class="custom"  multiple="true" placeholder="Für alle Wohnungen sichtbar" formControlName="apartments">
+          <ion-select-option  *ngFor="let apartment of house.apartments" [value]="apartment">{{apartment}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </div>
+
+    <ion-button class="delete-btn" (click)="deleteItem()" *ngIf="item._id">
+      Item Löschen <span class="material-symbols-outlined">delete</span>
+    </ion-button>
+  </form>
+</ion-list>

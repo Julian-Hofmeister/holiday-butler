@@ -1,0 +1,20 @@
+<div class="popover">
+  <ion-list>
+    <ion-item lines="none" [button]="true" [detail]="false" (click)="onLogout()">Abmelden</ion-item>
+    <ion-item lines="none" [button]="true" [detail]="false" (click)="onLogout()">Hilfe Anfragen</ion-item>
+    <ion-item lines="none" [button]="true" [detail]="false" (click)="onLogout()">Mehr Infos</ion-item>
+    <ion-item lines="none" [button]="true" id="nested-trigger">Andere Häuser</ion-item>
+
+    <ion-popover trigger="nested-trigger" [dismissOnSelect]="true" side="start">
+      <ng-template>
+        <ion-content>
+          <ion-list class="light">
+            <ion-item lines="none" [button]="true" [detail]="false">Haus 1</ion-item>
+            <ion-item lines="none" [button]="true" [detail]="false">Haus 2</ion-item>
+            <ion-item lines="none" [button]="true" [detail]="false">Haus 3</ion-item>
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+  </ion-list>
+</div>

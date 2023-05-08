@@ -1,0 +1,27 @@
+<app-header route="home"></app-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeLg="5.5" offsetLg=".5">
+        <app-start-form *ngIf="!editInfo" (newItemEvent)="onOpenInfo($event)"></app-start-form>
+        <app-info-form *ngIf="editInfo" [info]="editInfo" [house]="house" (newItemEvent)="onOpenInfo($event)"></app-info-form>
+      </ion-col>
+      <ion-col sizeLg="5.5" >
+        <div class="center-hz" *ngIf="!notShowAgain">
+          <div class="dissmible-text">
+            <span class="material-symbols-outlined" (click)="setTimetamp()">cancel</span>
+            <p>In dieser Ansicht können Sie <br> Karten anlicken um sie zu bearbeiten</p>
+          </div>
+        </div>
+        <div class="center-hz">
+          <app-device-preview></app-device-preview>
+
+        </div>
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-footer></app-footer>
+</ion-content>

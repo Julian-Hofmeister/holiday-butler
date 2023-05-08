@@ -1,0 +1,32 @@
+<app-login-header></app-login-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img src="/assets/imgs/hb-logo-small.png" class="small-img" alt="">
+
+        <ion-list>
+          <form [formGroup]="loginForm" (ngSubmit)="submit()">
+            <ion-row class="input-row">
+                <span class="material-symbols-outlined">mail</span>
+                <ion-item>
+                  <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row class="input-row">
+              <span class="material-symbols-outlined">key</span>
+              <ion-item>
+                <ion-input placeholder="Passwort" [type]="isVisible ? 'text' : 'password' " formControlName="password"></ion-input>
+                <span *ngIf="isVisible" class="material-symbols-outlined" (click)="flipVisibility()">visibility</span>
+                <span *ngIf="!isVisible" class="material-symbols-outlined" (click)="flipVisibility()">visibility_off</span>
+              </ion-item>
+            </ion-row>
+            <p class="error">{{error}}</p>
+            <ion-button type="submit" [disabled]="loginForm.invalid">Anmelden<span class="material-symbols-outlined">login</span></ion-button>
+          </form>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

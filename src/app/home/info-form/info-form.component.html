@@ -1,0 +1,68 @@
+<ion-list  [@simpleFadeAnimation]="'in'">
+  <form [formGroup]="infoPageForm" (ngSubmit)="submit()">
+    <ion-row class="align-vertical">
+      <ion-row class="align-vertical">
+        <span class="material-symbols-outlined back" (click)="back()"  style="cursor: pointer">arrow_back</span>
+        <h2>{{infoPageForm.value.title}}</h2>
+      </ion-row>
+      <ion-row class="align-vertical">
+        <p *ngIf="infoPageForm.dirty || dirtyInfoRows" class="cancel" (click)="discardChanges()">Verwerfen</p>
+        <ion-button type="submit" [disabled]="!infoPageForm.dirty && !dirtyInfoRows">Speichern<span class="material-symbols-outlined">save</span></ion-button>
+      </ion-row>
+    </ion-row>
+
+    <ion-item lines="none">
+      <ion-label position="stacked">Titel:</ion-label>
+      <ion-input formControlName="title" class="custom"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Beschreibung:</ion-label>
+      <ion-textarea rows="4" formControlName="description" class="custom"></ion-textarea>
+    </ion-item>
+    <ion-item lines="none"  class="info-label">
+      <ion-label position="stacked"  class="info-label">Gegenübstehende Informationen:</ion-label>
+    </ion-item>
+    <ion-list *ngFor="let infoRow of info.infoRows" class="no-styles">
+      <ion-row>
+        <ion-col class="no-styles">
+          <ion-item lines="none">
+            <ion-label position="stacked">Links (Name):</ion-label>
+            <ion-input [(ngModel)]="infoRow.name" [ngModelOptions]="{standalone: true}" class="custom" (ionInput)="markInfoRowsDirty()"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col class="no-styles">
+          <ion-item lines="none">
+            <ion-label position="stacked">Rechts (Beschreibung):</ion-label>
+            <ion-input  [(ngModel)]="infoRow.content" [ngModelOptions]="{standalone: true}" class="custom" (ionInput)="markInfoRowsDirty()"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+    <ion-row class="add-row">
+      <ion-button class="add-btn" (click)="addInfoRow()">Neue Reihe</ion-button>
+    </ion-row>
+    <ion-list *ngIf="house.apartments.length > 1">
+      <ion-item lines="none" >
+        <ion-label position="stacked">Sichtbar für bestimmte Apartments:</ion-label>
+        <ion-select class="custom"  multiple="true" placeholder="Für alle Wohnungen sichtbar" formControlName="apartments">
+          <ion-select-option  *ngFor="let apartment of house.apartments" [value]="apartment" >{{apartment}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+      <ion-button class="delete-btn" (click)="deleteInfo(info)">
+        Info Löschen <span class="material-symbols-outlined">delete</span>
+      </ion-button>
+    <ion-item lines="none" class="space-top">
+      <ion-label position="stacked"  class="list-label">Auf einen Blick:</ion-label>
+    </ion-item>
+    <ion-list *ngFor="let item of primaryItems">
+      <div (click)="openInfo(item)" class="info-button" *ngIf="item._id !== this.info._id">
+        {{item.title}} {{item.apartments?.length ? ('[' + item.apartments + ']') : ''}}  <span class="material-symbols-outlined">edit</span></div>
+    </ion-list>
+    <ion-button class="addInfo" (click)="openInfo()">
+      Neue Info  <span class="material-symbols-outlined">add</span>
+    </ion-button>
+  </form>
+
+</ion-list>
+

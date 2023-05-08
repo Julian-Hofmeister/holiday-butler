@@ -1,0 +1,16 @@
+  <!-- Tab bar -->
+  <ion-tab-bar mode="md">
+    <ion-tab-button  [selected]="tab === 'tab1'"  [routerLink]="['../tab1']"  routerDirection="back">
+      <span class="material-symbols-outlined">king_bed</span>
+      <ion-label *ngIf="tab === 'tab1'">Wohnung</ion-label>
+    </ion-tab-button>
+    <ion-tab-button  [selected]="tab !== 'tab1' && tab !== 'tab2'" [routerLink]="['../home']"  [routerDirection]="tab === 'tab1' ? 'forward' : 'back'" >
+      <span class="material-symbols-outlined"  >home</span>
+      <ion-label *ngIf="tab === 'home'">Start</ion-label>
+
+    </ion-tab-button>
+    <ion-tab-button   [selected]="tab === 'tab2'" [routerLink]="['../tab2']"  routerDirection="forward">
+      <span class="material-symbols-outlined">landscape</span>
+      <ion-label  *ngIf="tab === 'tab2'">Umgebung</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>

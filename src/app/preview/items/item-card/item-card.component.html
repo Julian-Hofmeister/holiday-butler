@@ -1,0 +1,80 @@
+<div  class="bigImage" *ngIf="item.kind !== 'smallImg' || !item.img" (contextmenu)="presentPopover($event)">
+  <ion-row *ngIf="item.img">
+    <ion-col class="no-margin" *ngIf="item.kind === 'bigImg'">
+      <img [src]="item.img" alt="" />
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <h4>{{ item.title }}</h4>
+      <p class="subtitle">{{ item.subtitle }}</p>
+      <p class="description">{{ item.description }}</p>
+      <img *ngIf="item.kind === 'mediumImg' && item.img" [src]="item.img" class="mediumImg" alt="">
+    </ion-col>
+  </ion-row>
+  <ion-row class="btn-row">
+    <a [href]="'tel:'+item.phoneLink" *ngIf="item.phoneLink && item.standOutBtn !== 'phone' && links !== 1" >
+      <span class="material-symbols-outlined">call</span>
+    </a>
+    <a [href]="item.mapsLink" target="_blank" *ngIf="item.mapsLink  && item.standOutBtn !== 'maps'  && links !== 1">
+      <span class="material-symbols-outlined">near_me</span>
+    </a>
+    <a [href]="item.websiteLink" target="_blank" *ngIf="item.websiteLink  && item.standOutBtn !== 'website'  && links !== 1">
+      <span class="material-symbols-outlined">public</span>
+    </a>
+    <ion-col class="btn-col"  *ngIf="(item.standOutBtn && item.standOutBtn !== 'undefined') && links !== 1">
+      <ion-button (click)="clickBtn()">
+        {{ item.standOutBtn === 'phone' ? 'Anrufen' : item.standOutBtn === 'maps' ? 'Anfahrt' : item.standOutBtn === 'website' ? 'Mehr erfahren' : '' }}
+      </ion-button>
+    </ion-col>
+    <ion-col class="btn-col"  *ngIf="links === 1">
+      <ion-button (click)="clickBtn()">
+        {{ item.phoneLink ? 'Anrufen' : item.mapsLink ? 'Anfahrt' : item.websiteLink ? 'Mehr erfahren' : '' }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</div>
+
+<div  class="bigImage" *ngIf="item.kind === 'smallImg' && item.img" (contextmenu)="presentPopover($event)">
+  <ion-row>
+    <ion-col size="8">
+      <h4>{{ item.title }}</h4>
+      <p class="subtitle">{{ item.subtitle }}</p>
+      <p class="description">{{ item.description }}</p>
+    </ion-col>
+    <ion-col size="4" >
+      <img [src]="item.img" alt="" class="smallImg" />
+    </ion-col>
+  </ion-row>
+  <ion-row class="btn-row">
+    <a [href]="'tel:'+item.phoneLink" *ngIf="item.phoneLink && item.standOutBtn !== 'phone' && links !== 1" >
+      <span class="material-symbols-outlined">call</span>
+    </a>
+    <a [href]="item.mapsLink" target="_blank" *ngIf="item.mapsLink  && item.standOutBtn !== 'maps'  && links !== 1">
+      <span class="material-symbols-outlined">near_me</span>
+    </a>
+    <a [href]="item.websiteLink" target="_blank" *ngIf="item.websiteLink  && item.standOutBtn !== 'website'  && links !== 1">
+      <span class="material-symbols-outlined">public</span>
+    </a>
+    <ion-col class="btn-col"  *ngIf="(item.standOutBtn && item.standOutBtn !== 'undefined') && links !== 1">
+      <ion-button (click)="clickBtn()">
+        {{ item.standOutBtn === 'phone' ? 'Anrufen' : item.standOutBtn === 'maps' ? 'Anfahrt' : item.standOutBtn === 'website' ? 'Mehr erfahren' : '' }}
+      </ion-button>
+    </ion-col>
+    <ion-col class="btn-col"  *ngIf="links === 1">
+      <ion-button (click)="clickBtn()">
+        {{ item.phoneLink ? 'Anrufen' : item.mapsLink ? 'Anfahrt' : item.websiteLink ? 'Mehr erfahren' : '' }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</div>
+
+<ion-popover  #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+  <ng-template>
+    <ion-content>
+      <ion-list>
+        <ion-item lines="none" [button]="true" [detail]="false" (click)="onDeleteItem()">Item löschen</ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>

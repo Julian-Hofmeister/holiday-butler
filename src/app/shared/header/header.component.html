@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+<ion-header>
+  <ion-toolbar>
+
+    <ion-row class="header-row">
+      <ion-col size-lg="3.5" offset=".5" size-md="2" size-sm="2" size-xs="2">
+        <img src="/assets/imgs/hb-logo.png" class="big-img" alt="">
+        <img src="/assets/imgs/hb-logo-small.png" class="small-img" alt="">
+      </ion-col>
+      <ion-col class="content-row" size-lg="8" pull=".5" size-md="9.5" size-sm="9.5" size-xs="9.5">
+       <ul>
+         <li><a [ngClass]="{'active': (route === 'home')}" [routerLink]="['/home']"  routerDirection="back"  class="page active">Meine Startseite</a></li>
+         <li><a [ngClass]="{'active': (route === 'tab1')}" [routerLink]="['/tab1']"  [routerDirection]="route === 'home' ? 'forward' : 'back'" class="page">Wohnung</a></li>
+         <li><a [ngClass]="{'active': (route === 'tab2')}" [routerLink]="['/tab2']"  routerDirection="forward" class="page ">Umgebung</a></li>
+         <li id="account-pop" style="cursor: pointer" (click)="isOpen=true">
+           <a>
+               <span class="material-symbols-outlined" (click)="onLogout()">logout</span>
+           </a>
+         </li>
+<!--         <ion-popover trigger="account-pop" [isOpen]="isOpen" (didDismiss)="isOpen = false">-->
+<!--           <ng-template>-->
+<!--             <app-account-modal></app-account-modal>-->
+<!--           </ng-template>-->
+<!--         </ion-popover>-->
+       </ul>
+      </ion-col>
+
+    </ion-row>
+  </ion-toolbar>
+</ion-header>

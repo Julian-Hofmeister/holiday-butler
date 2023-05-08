@@ -3,7 +3,8 @@ import {map, Observable, shareReplay} from "rxjs";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {where} from "@angular/fire/firestore";
 import firebase from "firebase/compat/app";
-import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from "@angular/fire/compat/storage";
+import {ToastController} from "@ionic/angular";
 // import firebase from "@angular/fire/compat";
 
 @Injectable({
@@ -12,6 +13,8 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 export class FirebaseService {
   //#region [ PROPERTIES ] /////////////////////////////////////////////////////////////////////////
 
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
 
   //#endregion
 
@@ -20,14 +23,12 @@ export class FirebaseService {
   constructor(
     private afs: AngularFirestore,
     private storage: AngularFireStorage,
-
+    private toastController: ToastController
   ) {}
 
   //#endregion
 
   //#region [ PUBLIC ] ////////////////////////////////////////////////////////////////////////////
-
-  // ----------------------------------------------------------------------------------------------
 
   fetch(path: string): Observable<any[]>  {
     return this.afs.collection(path).snapshotChanges().pipe(
@@ -35,7 +36,7 @@ export class FirebaseService {
         changes.map((item) => {
 
           const data = item.payload.doc.data() as any;
-          data.id = item.payload.doc.id;
+          data._id = item.payload.doc.id;
           return data;
         })),
       shareReplay(1)
@@ -43,6 +44,7 @@ export class FirebaseService {
   }
 
   // ----------------------------------------------------------------------------------------------
+
   fetchSingle(path: string, id: string): Observable<any> {
     const docPath = this.afs.collection(path, (ref) =>
       ref.where(firebase.firestore.FieldPath.documentId(), '==', id)
@@ -52,7 +54,7 @@ export class FirebaseService {
       map((changes) =>
         changes.map((item) => {
           const data = item.payload.doc.data() as any;
-          data.id = item.payload.doc.id;
+          data._id = item.payload.doc.id;
 
           return data;
         })
@@ -64,7 +66,33 @@ export class FirebaseService {
   // ----------------------------------------------------------------------------------------------
 
   add(path: string, data: any) {
-    return this.afs.collection(path).add({...data}).then();
+    return this.afs.collection(path).add({...data}).then((doc) => {
+      return doc.id;
+    });
+  }
+
+  // ----------------------------------------------------------------------------------------------
+
+  update(path: string, data: any) {
+    this.afs.doc(path).update({...data});
+  }
+
+  // ----------------------------------------------------------------------------------------------
+
+  delete(path: string) {
+    return this.afs.doc(path).delete().then();
+  }
+
+  // ----------------------------------------------------------------------------------------------
+
+  async uploadImage(file: File, path: string) {
+    await this.storage.ref(path).put(file);
+  }
+
+  // ----------------------------------------------------------------------------------------------
+
+  async deleteImage(path: string) {
+   await this.storage.ref(path).delete();
   }
 
   // ----------------------------------------------------------------------------------------------
@@ -75,6 +103,8 @@ export class FirebaseService {
       .getDownloadURL()
       .toPromise();
   }
+
+  // ----------------------------------------------------------------------------------------------
 
   //#endregion
 

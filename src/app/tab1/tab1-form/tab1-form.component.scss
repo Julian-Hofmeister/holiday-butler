@@ -1,0 +1,169 @@
+h2 {
+  color: var(--ion-color-dark);
+  padding: 0;
+  margin: 0;
+  margin-left: 1.1rem
+}
+
+ion-button {
+  --background: rgb(255,138,0);
+  --background: linear-gradient(156deg, rgba(255,138,0,1) 0%, rgba(255,77,0,1) 100%);
+  --background-hover: rgb(253, 168, 57);
+  font-weight: 400;
+  text-transform: capitalize;
+  width: 190px;
+  height: 50px;
+  padding: 0;
+  margin-right: 10px;
+  span {
+    margin-left: .4rem;
+  }
+}
+ion-button[disabled] {
+  --background: #868686;
+}
+
+
+ion-list, ion-item, ion-textarea {
+  width: 100%;
+  ion-input.custom, input.custom, ion-textarea.custom, ion-select.custom {
+    --background: #EBEBEB;
+    background: #EBEBEB;
+    --color: #000;
+    --placeholder-color: #434343;
+    --placeholder-opacity: .8;
+
+    --padding-bottom: 10px;
+    --padding-end: 10px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+
+    padding: 10px;
+
+    border-radius: 10px ;
+    width: 100%;
+  }
+
+  ion-label {
+    margin-top: 2rem;
+    padding-bottom: .3rem !important;
+    z-index: 9999;
+  }
+}
+
+.list-label {
+  margin-bottom: -1rem !important;
+  padding-bottom:0;
+}
+
+.info-label {
+  margin-bottom: -2rem !important;
+  padding-bottom: 0 !important;
+  z-index: 999;
+}
+
+.space-top {
+  margin-top: 1rem;
+}
+
+.no-styles {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  margin-top: 1.5rem;
+  margin-left: 20px;
+  height: 15rem;
+  border-radius: 10px;
+}
+
+.add-row {
+  justify-content: end;
+  .add-btn {
+    margin-top: 1rem;
+    height: 30px;
+    width: 110px;
+    z-index: 9999;
+  }
+}
+
+
+ion-button.delete-btn {
+  --border-radius: 10px;
+  padding: 0 10px;
+  margin: 2rem 10px 0;
+  --background: rgb(26, 26, 26);
+}
+
+.input-row {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  span {
+    color: var(--ion-color-primary);
+    margin-right: 1rem;
+  }
+
+  //ion-item {
+  //  width: 20rem;
+  //}
+}
+
+.cancel {
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+
+.img-row {
+  span {
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
+}
+
+.add {
+  width: 50px;
+  span {
+    margin: 0;
+  }
+}
+
+ion-accordion-group {
+
+  padding: 10px;
+  padding-left: 20px;
+
+  ion-accordion {
+    border-radius: 10px ;
+
+  }
+  width: 100%;
+  ion-label {
+    margin-top: 10px;
+  }
+
+  ion-item {
+    --background: #EBEBEB;
+    background: #EBEBEB;
+  }
+  img {
+    object-fit: contain;
+  }
+  div[slot="content"] {
+    background: #f3f3f3;
+  }
+
+
+  img {
+    margin-left: 0;
+  }
+  .img-card {
+    flex-direction: column;
+    border-radius: 15px;
+    ion-checkbox {
+      display: block;
+    }
+  }
+}
+

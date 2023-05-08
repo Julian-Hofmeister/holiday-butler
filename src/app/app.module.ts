@@ -15,13 +15,17 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {HeaderComponentModuleModule} from "./shared/header/header.component.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 export const createTranslateLoader = (http: HttpClient) => new TranslateHttpLoader(http, './assets/json/', '.json');
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,
-    IonicModule.forRoot(),
+    BrowserAnimationsModule,
+    IonicModule.forRoot({mode: 'ios'}),
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -32,11 +36,12 @@ export const createTranslateLoader = (http: HttpClient) => new TranslateHttpLoad
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    }),
+    }), HeaderComponentModuleModule,
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideFirestore(() => getFirestore())
+
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,172 @@
+
+h2 {
+  color: var(--ion-color-dark);
+  padding: 0;
+  margin: 0;
+  margin-left: 1.1rem
+}
+
+.back {
+  color: var(--ion-color-dark);
+  padding: 0;
+  margin: 0;
+  margin-left: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+ion-list, ion-item, ion-textarea {
+  width: 100%;
+  ion-input.custom, input.custom, ion-textarea.custom, ion-select.custom {
+    --background: #EBEBEB;
+    background: #EBEBEB;
+    --color: #000;
+    --placeholder-color: #434343;
+    --placeholder-opacity: .8;
+
+    --padding-bottom: 10px;
+    --padding-end: 10px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+
+    padding: 10px;
+
+    border-radius: 10px ;
+    width: 100%;
+  }
+
+  ion-label {
+    margin-top: 2rem;
+    padding-bottom: .3rem !important;
+    z-index: 9999;
+  }
+}
+
+.img-placeholder {
+  margin-top: 1.5rem;
+  max-width: 300px;
+  max-height: 170px;
+  background-color: #acacac;
+  border-radius: 10px;
+  line-height:250px;
+  text-align: center;
+
+  ion-icon {
+    font-size: 6rem;
+    color: #646464;
+  }
+}
+
+img {
+  margin-top: 1.5rem;
+  height: 15rem;
+  width: 26rem;
+  border-radius: 10px;
+}
+
+ion-button {
+  --background: rgb(255,138,0);
+  --background: linear-gradient(156deg, rgba(255,138,0,1) 0%, rgba(255,77,0,1) 100%);
+  --background-hover: rgb(253, 168, 57);
+  font-weight: 400;
+  text-transform: capitalize;
+  width: 190px;
+  height: 50px;
+  padding: 0;
+  margin-right: 10px;
+  span {
+    margin-left: .4rem;
+  }
+}
+ion-button[disabled] {
+  --background: #868686;
+}
+
+.info-button {
+  --background: #EBEBEB;
+  background: #EBEBEB;
+  --color: #000;
+  --placeholder-color: #434343;
+  --placeholder-opacity: .8;
+
+  --padding-bottom: 10px;
+  --padding-end: 10px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+
+  padding: 10px;
+
+  border-radius: 10px ;
+  width: calc(100% - 29px);
+  height: 40px;
+  margin-left: 1.2rem;
+  //margin-right: 1.2rem;
+  margin-bottom: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+
+
+  span {
+    color: rgb(255,138,0);
+    --color: linear-gradient(156deg, rgba(255,138,0,1) 0%, rgba(255,77,0,1) 100%);
+  }
+}
+.info-button:active {
+  background: rgb(255,138,0);
+  background: linear-gradient(156deg, rgba(255,138,0,1) 0%, rgba(255,77,0,1) 100%);
+}
+
+ion-button.delete-btn {
+  --border-radius: 10px;
+  padding: 0 10px;
+  margin: 2rem 10px 0;
+  --background: rgb(26, 26, 26);
+}
+
+.add-row {
+  justify-content: end;
+  .add-btn {
+    margin-top: 1rem;
+    height: 30px;
+    width: 110px;
+    z-index: 9999;
+  }
+}
+
+
+
+.list-label {
+  margin-bottom: -1rem !important;
+  padding-bottom:0;
+}
+
+.info-label {
+  margin-bottom: -2rem !important;
+  padding-bottom: 0 !important;
+  z-index: 999;
+}
+
+.space-top {
+  margin-top: 1rem;
+}
+
+.no-styles {
+  margin: 0;
+  padding: 0;
+}
+
+ion-button.addInfo {
+  width: calc(100% - .6rem);
+  padding: 5px 10px;
+  margin: 0 .6rem;
+  --border-radius: 10px ;
+}
+
+
+.cancel {
+  margin-right: 1.5rem;
+  cursor: pointer;
+}

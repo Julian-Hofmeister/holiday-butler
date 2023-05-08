@@ -1,0 +1,37 @@
+.footer {
+  margin-top: 3rem;
+  background-color: #252B2D;
+
+  p {
+    color: var(--ion-color-light);
+  }
+
+  ion-button {
+    margin-left: 1rem ;
+
+    span {
+      margin-left: 1rem;
+    }
+  }
+
+  ion-button.no-margin {
+    margin-left: 0;
+  }
+
+  img {
+    max-height: 10rem;
+    padding: 2rem 0;
+  }
+}
+
+.link-col {
+  text-align: end;
+   p>a {
+     color: var(--ion-color-light);
+      margin-right: 2rem ;
+   }
+}
+
+//ion-row, ion-col {
+//  border: 1px solid red;
+//}

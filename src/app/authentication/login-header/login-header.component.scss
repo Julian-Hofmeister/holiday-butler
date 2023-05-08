@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ion-toolbar, ion-header, .toolbar-container {
+  --background: #252B2D;
+  background: #252B2D;
+
+}
+
+.header-row {
+  align-items: center;
+  padding: 1rem;
+  background: #252B2D;
+}
+
+.redirect {
+  align-items: center;
+  justify-content: end;
+}
+
+span {
+margin-left: .7rem;
+  color: var(--ion-color-primary);
+
+
+}
+
+p {
+  color: white;
+}
+
+img {
+  max-height: 45px;
+}
+.small-img {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .big-img {
+    display: none;
+  }
+  .small-img {
+    display: initial;
+  }
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}

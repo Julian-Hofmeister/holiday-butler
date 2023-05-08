@@ -145,6 +145,12 @@
   font-family: 'Poppins';
   font-weight: 900;
   src: url('/assets/fonts/Poppins-ExtraBold.ttf');
+}// ----------------------------------------------------
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-style: italic;
+  src: url('/assets/fonts/Poppins-MediumItalic.ttf');
 }
 
 // TEXT STYLES
@@ -220,6 +226,11 @@ span.material-icons-outlined {
 
 .centered-horizontal {
   justify-content: center;
+}
+
+.align-vertical {
+  align-items: center;
+  justify-content: space-between;
 }
 
 .top-left {

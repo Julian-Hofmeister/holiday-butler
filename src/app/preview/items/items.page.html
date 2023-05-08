@@ -1,0 +1,52 @@
+<!--<ion-header [translucent]="true"  mode="ios">-->
+<!--  <ion-toolbar mode="ios">-->
+<!--    <ion-title>Informationen</ion-title>-->
+<!--  </ion-toolbar>-->
+<!--</ion-header>-->
+
+<ion-content>
+<!--  <ion-header collapse="condense" mode="ios">-->
+<!--    <ion-toolbar class="condense-header">-->
+<!--      <ion-title >Informationen</ion-title>-->
+<!--    </ion-toolbar>-->
+<!--  </ion-header>-->
+  <ion-grid class="no-scrollbar">
+
+    <ion-row>
+      <ion-col class="main-col">
+        <h2>{{tab === 'tab1' ? "Wohnung" : "umgebung"}}</h2>
+
+        <ion-searchbar (ionInput)="filterList($event)" placeholder="Suchen"></ion-searchbar>
+
+        <div *ngIf="!searchTerm">
+
+          <ion-list *ngFor="let item of preFilteredItems">
+<!--            <ion-reorder-group  [disabled]="false" (ionItemReorder)="handleReorder($any($event))">-->
+<!--              <ion-reorder>-->
+                <app-item-card (click)="selectItem(item)" [item]="item" ></app-item-card>
+<!--              </ion-reorder>-->
+<!--            </ion-reorder-group>-->
+          </ion-list>
+        </div>
+
+        <div *ngIf="searchTerm">
+          <ion-list *ngFor="let item of filteredTitleItems">
+            <app-item-card (click)="selectItem(item)"  [item]="item"></app-item-card>
+          </ion-list>
+          <ion-list *ngFor="let item of filteredDescriptionItems">
+            <app-item-card (click)="selectItem(item)" [item]="item"></app-item-card>
+          </ion-list>
+        </div>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <div class="position-bottom no-scrollbar" >
+    <app-tab-bar [tab]="tab"></app-tab-bar>
+  </div>
+
+
+
+</ion-content>
